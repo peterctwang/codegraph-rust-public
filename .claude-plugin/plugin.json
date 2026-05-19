@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin.json",
+  "name": "codegraph",
+  "version": "0.1.1",
+  "description": "Local-first code intelligence. Indexes 21 languages with tree-sitter, exposes a knowledge graph to Claude over MCP.",
+  "homepage": "https://github.com/peterctwang/codegraph-rust-public",
+  "repository": "https://github.com/peterctwang/codegraph-rust-public",
+  "license": "MIT",
+  "keywords": [
+    "mcp",
+    "code-intelligence",
+    "tree-sitter",
+    "knowledge-graph"
+  ],
+  "mcpServers": {
+    "codegraph": {
+      "command": "codegraph",
+      "args": ["serve", "--path", "${workspaceFolder}"],
+      "description": "Tree-sitter-backed semantic code index. Tools: codegraph_search, codegraph_get_node, codegraph_callers, codegraph_callees, codegraph_impact, codegraph_status, codegraph_files, codegraph_resolve, codegraph_languages, codegraph_context."
+    }
+  },
+  "requirements": {
+    "binary": "codegraph",
+    "bootstrap": {
+      "windows": "iwr https://github.com/peterctwang/codegraph-rust-public/raw/main/scripts/install.ps1 | iex",
+      "unix": "curl -fsSL https://github.com/peterctwang/codegraph-rust-public/raw/main/scripts/install.sh | bash"
+    },
+    "note": "Run the bootstrap once to install the codegraph binary and put it on PATH; this plugin then activates automatically in every Claude Code session."
+  }
+}

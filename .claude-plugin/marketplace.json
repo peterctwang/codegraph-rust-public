@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-marketplace.json",
+  "name": "peterctwang-codegraph",
+  "description": "codegraph — local-first code intelligence + MCP server (Rust). Single-plugin marketplace.",
+  "plugins": [
+    {
+      "id": "codegraph",
+      "version": "0.1.1",
+      "manifest": ".claude-plugin/plugin.json"
+    }
+  ]
+}
