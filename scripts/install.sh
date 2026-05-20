@@ -43,7 +43,7 @@ resolve_asset() {
     if ! rel="$(curl -fsSL -H "Accept: application/vnd.github+json" "$(api_url)")"; then
         err "Failed to fetch release metadata from GitHub."
     fi
-    local asset_name="codegraph-${target}"
+    local asset_name="codegraph-rust-${target}"
     local url
     url="$(echo "$rel" | python3 -c "
 import json, sys
@@ -92,7 +92,7 @@ main() {
 
     local bin_dir="$HOME/.codegraph/bin"
     mkdir -p "$bin_dir"
-    local bin_path="$bin_dir/codegraph"
+    local bin_path="$bin_dir/codegraph-rust"
     curl -fsSL -o "$bin_path" "$url"
     chmod +x "$bin_path"
     # macOS Gatekeeper: clear the quarantine attribute so the binary runs.

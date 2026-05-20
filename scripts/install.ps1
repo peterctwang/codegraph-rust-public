@@ -38,7 +38,7 @@ function Get-AssetUrl([string]$Target) {
     }
     $headers = @{ "User-Agent" = "codegraph-installer"; "Accept" = "application/vnd.github+json" }
     $rel = Invoke-RestMethod -Uri $apiUrl -Headers $headers
-    $assetName = "codegraph-$Target.exe"
+    $assetName = "codegraph-rust-$Target.exe"
     $asset = $rel.assets | Where-Object { $_.name -eq $assetName }
     if (-not $asset) { throw "No asset $assetName on release $($rel.tag_name)" }
     return @{ Url = $asset.browser_download_url; Tag = $rel.tag_name }
@@ -60,7 +60,7 @@ Write-Host "Downloading codegraph $($info.Tag)…"
 
 $binDir = Join-Path $env:USERPROFILE ".codegraph\bin"
 New-Item -ItemType Directory -Force -Path $binDir | Out-Null
-$binPath = Join-Path $binDir "codegraph.exe"
+$binPath = Join-Path $binDir "codegraph-rust.exe"
 
 Invoke-WebRequest -Uri $info.Url -OutFile $binPath -UseBasicParsing
 Write-Host "Wrote $binPath"
